@@ -1,6 +1,16 @@
 <script setup>
+import { ref, onMounted, onBeforeMount } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+onBeforeMount(() => {
+  console.log('App is about to be mounted!')
+})
+
+onMounted(() => {
+  console.log('App is mounted!')
+})
+
 </script>
 
 <template>
