@@ -18,12 +18,12 @@
       "Storybook pattern library"
     ],
     "year": "2023",
-    "large_img": "testMachine_large.png",
-    "website_img": "testMachine_website.png",
-    "website_img_2": "testMachine_website_2.png",
-    "small_img": "testMachine_small.png",
-    "website_url": "https://testmachine.netlify.app/",
-    "video": "testMachine.mp4"
+    "large_img": "assets/mdt/large_img.png",
+    "website_img": "assets/mdt/img_01.png",
+    "website_img_2": "assets/mdt/img_02.png",
+    "small_img": "assets/mdt/small_img.png",
+    "website_url": "",
+    "video": "assets/mdt/video.mov"
   },
   "madamePee": {
     "Catchphrase": "Because every woman's needs count",
@@ -36,12 +36,12 @@
     ],
     "features": ["API ", "React Js Frontend", "Context", "Responsive"],
     "year": "2021",
-    "large_img": "testMachine_large.png",
-    "website_img": "testMachine_website.png",
-    "website_img_2": "testMachine_website_2.png",
-    "small_img": "testMachine_small.png",
-    "website_url": "https://testmachine.netlify.app/",
-    "video": "testMachine.mp4"
+    "large_img": "assets/madamepee/large_img.png",
+    "website_img": "assets/madamepee/img_01.png",
+    "website_img_2": "assets/madamepee/img_02.png",
+    "small_img": "assets/madamepee/small_img.png",
+    "website_url": "https://www.madamepee.com/en/home/",
+    "video": "assets/mdt/video.mov"
   },
   "bolk": {
     "Catchphrase": "Good food for a healthy body",
@@ -55,11 +55,11 @@
     ],
     "features": ["Storybook pattern library ", "Vue Js Frontend", "Context", "Responsive"],
     "year": "2021",
-    "large_img": "testMachine_large.png",
-    "website_img": "testMachine_website.png",
-    "website_img_2": "testMachine_website_2.png",
-    "small_img": "testMachine_small.png",
-    "website_url": "https://testmachine.netlify.app/",
-    "video": "testMachine.mp4"
+    "large_img": "assets/bolk/large_img.png",
+    "website_img": "assets/bolk/small_img.png",
+    "website_img_2": "assets/bolk/img_01.png",
+    "small_img": "assets/bolk/img_02.png",
+    "website_url": "https://bolk.co",
+    "video": "assets/bolk/video.mov"
   }
 }
