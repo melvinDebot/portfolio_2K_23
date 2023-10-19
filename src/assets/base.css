@@ -65,3 +65,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+h2{
+  font-size: 5vw;
+}
+
+h3{
+  font-size: 4vw;
+}
+h4{
+  font-size: 2vw;
+}
+
+p{
+  font-size: 14px;
+}

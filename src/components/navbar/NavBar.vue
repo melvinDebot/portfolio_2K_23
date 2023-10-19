@@ -22,9 +22,9 @@ export default {
 
 <template>
   <nav>
-    <RouterLink to="/"><h3>Melvin Debot</h3></RouterLink>
+    <RouterLink to="/"><p>Melvin Debot</p></RouterLink>
     
-    <h3 v-if="showText">Developer Front End / Porfolio 2023</h3>
+    <p v-if="showText">Developer Front End / Porfolio 2023</p>
     <RouterLink to="/"><button>Contact Me</button></RouterLink>
     
   </nav>
@@ -39,7 +39,8 @@ nav{
   justify-content: space-between;
   padding: 0 20px;
   align-items: center;
-  position: sticky;
+  position: fixed;
+  z-index: 999;
   top: 0;
   left: 0;
   a {

@@ -13,10 +13,10 @@
         :id="'slide' + index"
         v-for="(item, index) in getData"
         :key="index"
+        @click="animationTransitionPage(item.name)"
       >
-        <RouterLink :to="{ name: 'project', params: { name: item.name } }">
-          {{ item.name }}
-        </RouterLink>
+        <p>{{ item.name }}</p>
+        <img :src="image" alt="personnage" class="img-person-left" />
       </div>
     </div>
     <div class="buttons">
@@ -30,6 +30,7 @@
 import data from '../utils/data.json'
 import Headband from '../components/transitions/Headband.vue'
 import { TimelineLite } from 'gsap'
+import LargeImg from '../assets/bolk/large_img.png'
 
 export default {
   name: 'HomeView',
@@ -41,7 +42,8 @@ export default {
     number: 0,
     currentItemIndex: 0,
     nextButtonDisabled: false,
-    prevButtonDisabled: false
+    prevButtonDisabled: false,
+    image: LargeImg
   }),
   computed: {
     getData() {
@@ -79,21 +81,12 @@ export default {
         }
       }, 50) // Adjust the interval time as needed
     },
-    nextSlide() {
-      if (this.currentItemIndex < this.getData.length - 1) {
-        this.currentItemIndex++
-      } else {
-        this.currentItemIndex = 0
-      }
-      this.animateSlider()
-    },
-    prevSlide() {
-      if (this.currentItemIndex > 0) {
-        this.currentItemIndex--
-      } else {
-        this.currentItemIndex = this.getData.length - 1
-      }
-      this.animateSlider()
+    animationTransitionPage(projectName) {
+      console.log(projectName)
+      setTimeout(() => {
+        this.$router.push({ name: 'project', params: { name: projectName } })
+      }, 1000)
+    
     },
     animateSlider() {
       this.nextButtonDisabled = true
@@ -172,6 +165,118 @@ export default {
         this.nextButtonDisabled = false
         this.prevButtonDisabled = false
       })
+    },
+
+    nextSlide() {
+      if (this.currentItemIndex < this.getData.length - 1) {
+        this.currentItemIndex++
+      } else {
+        this.currentItemIndex = 0
+      }
+      this.animateSlider()
+    },
+    prevSlide() {
+      if (this.currentItemIndex > 0) {
+        this.currentItemIndex--
+      } else {
+        this.currentItemIndex = this.getData.length - 1
+      }
+      this.animateSlider()
+    },
+    
+    animateSlider() {
+      this.nextButtonDisabled = true
+      this.prevButtonDisabled = true
+      const timeline = new TimelineLite()
+
+      // Animation pour agrandir l'élément actuel
+      timeline.to(
+        this.$refs.slider.children[this.currentItemIndex],
+        {
+          scale: 0.5,
+          duration: 0.5,
+          x: -(this.currentItemIndex * this.sliderWidth)
+        },
+        1
+      )
+
+      timeline.to(
+        this.$refs.slider.children[this.currentItemIndex],
+        {
+          scale: 1,
+          duration: 0.5,
+          
+        },
+        2
+      )
+
+      // Animation pour réduire l'élément précédent
+      if (this.currentItemIndex > 0) {
+        timeline.to(
+          this.$refs.slider.children[this.currentItemIndex - 1],
+          {
+            scale: 0.5,
+            duration: 0.5,
+            
+          },
+          0
+        )
+
+        timeline.to(
+          this.$refs.slider.children[this.currentItemIndex - 1],
+          {
+            scale: 0.5,
+            duration: 0.5,
+            x: -(this.currentItemIndex * this.sliderWidth)
+          },
+          1
+        )
+      } else {
+        // Réduire le dernier élément si l'index est 0 (pour l'effet de boucle)
+        timeline.to(this.$refs.slider.children[this.getData.length - 1], {
+          scale: 0.5,
+          duration: 0.5,
+          x: -(this.currentItemIndex * this.sliderWidth)
+        })
+      }
+
+      // Animation pour réduire l'élément suivant
+      if (this.currentItemIndex < this.getData.length - 1) {
+        timeline.to(
+          this.$refs.slider.children[this.currentItemIndex + 1],
+          {
+            scale: 0.5,
+            duration: 0.5
+          },
+          0.5
+        )
+
+        timeline.to(
+          this.$refs.slider.children[this.currentItemIndex + 1],
+          {
+            scale: 0.5,
+            duration: 0.5,
+            x: -(this.currentItemIndex * this.sliderWidth)
+          },
+          1
+        )
+      } else {
+        // Réduire le premier élément si l'index est le dernier (pour l'effet de boucle)
+        timeline.to(
+          this.$refs.slider.children[0],
+          {
+            scale: 0.5,
+            duration: 0.5
+          },
+          1
+        )
+      }
+
+      // Réactiver les boutons à la fin de l'animation
+      timeline.eventCallback('onComplete', () => {
+        this.nextButtonDisabled = false
+        this.prevButtonDisabled = false
+      })
     }
   },
   beforeMount() {
@@ -188,22 +293,22 @@ main {
   position: relative;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 96%;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  margin-top: 80px;
 
   .buttons {
-    position: relative;
+    position: absolute;
+    top: 600px;
     width: 50vw;
     height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
   }
 
   button {
@@ -229,27 +334,33 @@ main {
     height: 550px;
     display: flex;
     flex-direction: row;
-    position: relative;
+    position: fixed;
+    top: 100px;
   }
   .slide {
     height: 100%;
     flex-shrink: 0;
-
+    z-index: 1;
     width: 100%;
     overflow: hidden;
     scale: 0.5;
     &:nth-child(1) {
       scale: 1;
     }
-  }
-  .slide:nth-child(1) {
-    background: crimson;
-  }
-  .slide:nth-child(2) {
-    background: green;
-  }
-  .slide:nth-child(3) {
-    background: darkcyan;
+    img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 1;
+    }
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
   }
 }
 </style>
