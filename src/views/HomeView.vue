@@ -7,28 +7,29 @@
     colorText="white"
   />
   <main>
-    <div class="slider" ref="slider">
-      <div class="slide" :id="'slide' + index" v-for="(slide, index) in slides" :key="index">
-        {{ slide.content }}
+    <div class="slider" ref="slider" :style="{ width: sliderWidth + 'px' }">
+      <div
+        class="slide"
+        :id="'slide' + index"
+        v-for="(item, index) in getData"
+        :key="index"
+      >
+        <RouterLink :to="{ name: 'project', params: { name: item.name } }">
+          {{ item.name }}
+        </RouterLink>
       </div>
     </div>
-
-    <!-- <ul :style="{ transform: `translateX(-${currentItemIndex * 1149}px)` }">
-        <li v-for="(item, index) in getData" :key="index" :class="{ 'centered': index === currentItemIndex }">
-          <RouterLink :to="{ name: 'project', params: { name: item.name } }">
-            {{ item.name }}
-          </RouterLink>
-        </li>
-      </ul> -->
-    <button @click="nextSlide" class="next_button" :disabled="nextButtonDisabled">Next</button>
-    <button @click="prevSlide" class="prev_button" :disabled="prevButtonDisabled">Prev</button>
+    <div class="buttons">
+      <button @click="nextSlide" class="next_button" :disabled="nextButtonDisabled">Next</button>
+      <button @click="prevSlide" class="prev_button" :disabled="prevButtonDisabled">Prev</button>
+    </div>
   </main>
 </template>
 
 <script>
 import data from '../utils/data.json'
 import Headband from '../components/transitions/Headband.vue'
-import { TimelineLite, gsap } from 'gsap'
+import { TimelineLite } from 'gsap'
 
 export default {
   name: 'HomeView',
@@ -40,17 +41,29 @@ export default {
     number: 0,
     currentItemIndex: 0,
     nextButtonDisabled: false,
-    prevButtonDisabled: false,
-    tl: new TimelineLite(),
-    slides: [
-      { content: 'Slide 1', width: 600 },
-      { content: 'Slide 2', width: 400 },
-      { content: 'Slide 3', width: 400 }
-    ]
+    prevButtonDisabled: false
   }),
   computed: {
     getData() {
       return data
+    },
+    sliderWidth() {
+      const screenWidth = window.innerWidth
+
+      // Définir des valeurs de largeur pour desktop, tablette et mobile
+      let sliderWidth
+      if (screenWidth >= 1200) {
+        // Desktop : largeur pour les écrans de 1200 pixels ou plus
+        sliderWidth = 800
+      } else if (screenWidth >= 768) {
+        // Tablette : largeur pour les écrans de 768 pixels ou plus
+        sliderWidth = 600
+      } else {
+        // Mobile : largeur pour les écrans de moins de 768 pixels
+        sliderWidth = 300
+      }
+
+      return sliderWidth
     }
   },
   methods: {
@@ -67,7 +80,7 @@ export default {
       }, 50) // Adjust the interval time as needed
     },
     nextSlide() {
-      if (this.currentItemIndex < this.slides.length - 1) {
+      if (this.currentItemIndex < this.getData.length - 1) {
         this.currentItemIndex++
       } else {
         this.currentItemIndex = 0
@@ -78,7 +91,7 @@ export default {
       if (this.currentItemIndex > 0) {
         this.currentItemIndex--
       } else {
-        this.currentItemIndex = this.slides.length - 1
+        this.currentItemIndex = this.getData.length - 1
       }
       this.animateSlider()
     },
@@ -86,8 +99,6 @@ export default {
       this.nextButtonDisabled = true
       this.prevButtonDisabled = true
       const timeline = new TimelineLite()
-
-      console.log('before', this.currentItemIndex - 1, 'after', this.currentItemIndex)
 
       // Animation pour agrandir l'élément actuel
       timeline.to(
@@ -103,7 +114,7 @@ export default {
       timeline.to(
         this.$refs.slider,
         {
-          x: -this.currentItemIndex * 800,
+          x: -this.currentItemIndex * this.sliderWidth,
           duration: 0.5,
           ease: 'power2.out'
         },
@@ -124,7 +135,7 @@ export default {
       } else {
         // Réduire le dernier élément si l'index est 0 (pour l'effet de boucle)
         timeline.fromTo(
-          this.$refs.slider.children[this.slides.length - 1],
+          this.$refs.slider.children[this.getData.length - 1],
           {
             scale: 0.5,
             duration: 0.5
@@ -135,7 +146,7 @@ export default {
       }
 
       // Animation pour réduire l'élément suivant
-      if (this.currentItemIndex < this.slides.length - 1) {
+      if (this.currentItemIndex < this.getData.length - 1) {
         timeline.to(
           this.$refs.slider.children[this.currentItemIndex + 1],
           {
@@ -180,12 +191,27 @@ main {
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  overflow: hidden;
+
+  .buttons {
+    position: relative;
+    width: 50vw;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
 
   button {
     width: auto;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    flex-grow: 1;
   }
 
   .next_button {
@@ -200,10 +226,10 @@ main {
   }
 
   .slider {
-    width: 800px;
     height: 550px;
     display: flex;
     flex-direction: row;
+    position: relative;
   }
   .slide {
     height: 100%;
