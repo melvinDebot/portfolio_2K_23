@@ -1,4 +1,23 @@
 /* color palette from <https://github.com/vuejs/theme> */
+
+@font-face {
+  font-family: 'GalanoGrotesque-Medium'; /*Can be any text*/
+  src: local('GalanoGrotesque-Medium'),
+    url('./assets/font/GalanoGrotesque-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GalanoGrotesque-Regular'; /*Can be any text*/
+  src: local('GalanoGrotesque-Regular'),
+    url('./assets/font/GalanoGrotesque-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GalanoGrotesque-SemiBold'; /*Can be any text*/
+  src: local('GalanoGrotesque-SemiBold'),
+    url('./assets/font/GalanoGrotesque-SemiBold.ttf') format('truetype');
+}
+
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
@@ -55,6 +74,7 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   font-weight: normal;
 }
 
@@ -66,17 +86,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-family: GalanoGrotesque-SemiBold;
+  font-size: 4.8vw;
+}
+
 h2{
-  font-size: 5vw;
+  font-size: 2.4vw;
+  font-family: GalanoGrotesque-SemiBold;
 }
 
 h3{
-  font-size: 4vw;
+  font-size: 1.6vw;
+  font-family: GalanoGrotesque-Regular;
 }
 h4{
-  font-size: 2vw;
+  font-size: 0.89;
+  font-family: GalanoGrotesque-Regular;
 }
 
 p{
   font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-family: GalanoGrotesque-SemiBold;
+    font-size: 32px;
+    line-height: auto;
+  }
+  h3{
+    font-size: 20px;
+    line-height: auto;
+  }
 }

@@ -1,7 +1,8 @@
 <template>
-  <div class="container" >
-    <div class="heandband">
-      <h1 ref="title">{{ number }} %</h1>
+  <div class="container" :style="{background : backgroundContainer}">
+    <div class="heandband" :style="{backgroundColor : backgroundHeadBand}">
+      <h1 ref="title" :style="{color : colorText}" v-if="!isContactPage">{{ number }} %</h1>
+      <h1 ref="heandband_text" :style="{color : colorText}" v-if="isContactPage">Contact</h1>
     </div>
   </div>
 </template>
@@ -16,6 +17,7 @@ export default {
     backgroundContainer: String,
     backgroundHeadBand: String,
     colorText: String,
+    isContactPage: Boolean
   },
 
   computed : {
@@ -33,6 +35,8 @@ export default {
   },
   unmounted() {
     // Revoir la transistion de sortie
+    const timeline = new TimelineLite()
+    timeline.to(".heandband", 1, { opacity: 0, ease: "power2.out", duration: 1 })
     console.log('unmounted')
   }
   
@@ -41,10 +45,12 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
-  background: white;
+
   transition: all 1s ease-in-out;
   z-index: 99999;
   .heandband {
@@ -54,13 +60,11 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #282828;
     h1 {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: white;
       
     }
   }

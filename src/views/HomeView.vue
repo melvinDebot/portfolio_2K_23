@@ -1,9 +1,11 @@
 <template>
   <Headband
     v-if="showAnimation"
+    key="home"
+    :isContactPage="false"
     :number="number"
-    backgroundContainer="black"
-    backgroundHeadBand="white"
+    backgroundContainer="white"
+    backgroundHeadBand="#181818"
     colorText="white"
   />
   <main>
@@ -15,13 +17,13 @@
         :key="index"
         @click="animationTransitionPage(item.name)"
       >
-        <p>{{ item.name }}</p>
-        <img :src="image" alt="personnage" class="img-person-left" />
+        <h1>{{ item.name }}</h1>
+        <img src="../assets/mdt/large_img.png" alt="personnage" class="img-person-left" />
       </div>
     </div>
     <div class="buttons">
-      <button @click="nextSlide" class="next_button" :disabled="nextButtonDisabled">Next</button>
-      <button @click="prevSlide" class="prev_button" :disabled="prevButtonDisabled">Prev</button>
+      <button @click="nextSlide" class="next_button" :disabled="nextButtonDisabled"><h4>Next</h4></button>
+      <button @click="prevSlide" class="prev_button" :disabled="prevButtonDisabled"><h4>Prev</h4></button>
     </div>
   </main>
 </template>
@@ -30,7 +32,9 @@
 import data from '../utils/data.json'
 import Headband from '../components/transitions/Headband.vue'
 import { TimelineLite } from 'gsap'
-import LargeImg from '../assets/bolk/large_img.png'
+import LargeImgBolk from '../assets/bolk/large_img.png'
+import LargeImgMdt from '../assets/mdt/large_img.png'
+import LargeImgMadamePee from '../assets/madamepee/large_img.png'
 
 export default {
   name: 'HomeView',
@@ -43,7 +47,9 @@ export default {
     currentItemIndex: 0,
     nextButtonDisabled: false,
     prevButtonDisabled: false,
-    image: LargeImg
+    imageBolk: LargeImgBolk,
+    imageMdt: LargeImgMdt,
+    imageMadamePee: LargeImgMadamePee
   }),
   computed: {
     getData() {
@@ -81,6 +87,17 @@ export default {
         }
       }, 50) // Adjust the interval time as needed
     },
+
+    getImagePath(item) {
+    // Utilisez la propriété large_img pour déterminer le chemin de l'image
+    const imagePath = `../assets/${item}/large_img.png`;
+
+    console.log("🚀 ~ file: HomeView.vue:93 ~ getImagePath ~ imagePath:", imagePath)
+    // Chargez l'image en tant que blob
+    return fetch(imagePath)
+      .then(response => response.blob())
+      .then(blob => URL.createObjectURL(blob));
+  },
     animationTransitionPage(projectName) {
       console.log(projectName)
       setTimeout(() => {
@@ -268,7 +285,7 @@ export default {
             scale: 0.5,
             duration: 0.5
           },
-          1
+          0.5
         )
       }
 
@@ -280,10 +297,21 @@ export default {
     }
   },
   beforeMount() {
-    // this.showAnimation = true;
+    this.showAnimation = true;
   },
+  
   mounted() {
     this.incrementTitle()
+    const timeline = new TimelineLite()
+    setTimeout(() => {
+      timeline.fromTo([".slider", ".buttons"], 5.8, {
+        opacity: 0,
+        ease: 'power4.out',
+      }, {
+        opacity: 1,
+        ease: 'power4.out',
+      })
+    }, 9000)
   }
 }
 </script>
@@ -323,11 +351,19 @@ main {
     position: absolute;
     bottom: 0;
     right: 0;
+    cursor: pointer;
+    &:hover{
+      color: #54CC7C;
+    }
   }
   .prev_button {
     position: absolute;
     bottom: 0;
     left: 0;
+    cursor: pointer;
+    &:hover{
+      color: #54CC7C;
+    }
   }
 
   .slider {
@@ -354,7 +390,7 @@ main {
       top: 0;
       z-index: 1;
     }
-    p {
+    h1 {
       position: absolute;
       top: 50%;
       left: 50%;

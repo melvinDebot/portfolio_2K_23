@@ -2,7 +2,7 @@
   <div class="container">
     <div class="wrapper">
       <img
-        :src="image"
+        src="../assets/mdt/large_img.png"
         alt="personnage"
         class="wrapper_img"
         :style="{ width: sliderWidth + 'px' }"
@@ -12,8 +12,8 @@
     <div class="layer">
       <div class="layer_img"></div>
       <div class="layer_text">
-        <h3>{{ currentData[0].Catchphrase }}</h3>
-        <p>{{ currentData[0].text }}</p>
+        <h2>{{ currentData[0].Catchphrase }}</h2>
+        <h3>{{ currentData[0].text }}</h3>
       </div>
     </div>
     <div class="layer">
@@ -21,25 +21,47 @@
     </div>
     <div class="layer">
       <div class="layer_services">
-        <h4>Services</h4>
+        <h3>Services</h3>
         <ul>
           <li v-for="item in currentData[0].services" :key="item">
-            {{ item }}
+            <h3>{{ item }}</h3>
           </li>
         </ul>
       </div>
-      <div class="layer_img"></div>
+      <div class="layer_img_small"></div>
     </div>
     <div class="layer">
       <div class="layer_services">
-        <h4>Feature</h4>
+        <h3>Feature</h3>
         <ul>
           <li v-for="item in currentData[0].features" :key="item">
-            {{ item }}
+            <h3>{{ item }}</h3>
           </li>
         </ul>
       </div>
-      <div class="layer_img"></div>
+      <div class="layer_img_small"></div>
+    </div>
+    <div class="layer">
+      <div>
+        <h3>Year</h3>
+        <h3>{{ currentData[0].year }}</h3>
+      </div>
+    </div>
+    <div class="layer">
+      <div>
+        <h3>Website</h3>
+        <a :href="website_url" target="blank"><h3>{{ currentData[0].name }}</h3></a>
+        
+      </div>
+    </div>
+    <div class="layer">
+      <div>
+        <h3>Next Project</h3>
+        <h3>Scroll</h3>
+      </div>
+    </div>
+    <div class="next_project">
+
     </div>
   </div>
 </template>
@@ -53,6 +75,11 @@ export default {
   data: () => ({
     image: LargeImg
   }),
+  methods: {
+    getBackgroundPath(img, projectName){
+      return require(`@/assets/${projectName}/${img}.png`)
+    },
+  },
 
   computed: {
     getData() {
@@ -123,24 +150,36 @@ export default {
     height: auto;
     border: 1px solid green;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     margin: 40px 0px;
     @media (max-width: 768px) {
       flex-direction: column;
     }
-    h3{
-      margin: 10px 0px;
+
+    li{
+      list-style: none;
     }
 
     .layer_img {
-      width: 650px;
-      height: 345px;
+      min-width: 32.5vw;
+      min-height: 32.25vw;
       background: grey;
-      border-radius: 40px;
+      border-radius: 20px;
       @media (max-width: 768px) {
-        width: 357px;
+        width: 100%;
+        height: 364px;
+      }
+    }
+
+    .layer_img_small{
+      min-width: 42.05vw;
+      min-height: 26.5vw;
+      border-radius: 20px;
+      background: grey;
+      @media (max-width: 768px) {
+        width: 100%;
         height: 364px;
       }
     }
@@ -153,6 +192,12 @@ export default {
       align-self: baseline;
       margin-left: 20px;
     }
+  }
+
+  .next_project{
+    width: 100%;
+    height: 287px;
+    background: grey;
   }
 }
 </style>
