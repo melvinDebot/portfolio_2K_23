@@ -19,7 +19,7 @@
       >
         <h1>{{ item.name }}</h1>
         
-        <img :src="imageMdt" />
+        <ImageComponent imagePath="large_img" :nameProject="item.name" />
       </div>
     </div>
     <div class="buttons">
