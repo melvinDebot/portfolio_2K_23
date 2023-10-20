@@ -1,7 +1,7 @@
 
 [
   {
-    "name": "testMachine",
+    "name": "mdt",
     "Catchphrase": "Test your electronic product at your fingertips",
     "text": "During my work-study placement at Exceenis, I had the opportunity to design software for a robotic arm used to test various electronic products. My role included creating a graphic charter and integrating 3D models into an interactive scene.",
     "services": [
@@ -28,7 +28,7 @@
     "video": "assets/mdt/video.mov"
   },
   {
-    "name": "madamePee",
+    "name": "madamepee",
     "Catchphrase": "Because every woman's needs count",
     "text": "During my work-study experience at Exceenis, I developed a website listing all female urinals in France. My job was to design and implement this platform, meeting the specific needs of the market with precision and reliability.",
     "services": [
