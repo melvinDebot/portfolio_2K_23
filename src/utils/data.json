@@ -1,7 +1,7 @@
 
 [
   {
-    "name": "testMachine",
+    "name": "mdt",
     "Catchphrase": "Test your electronic product at your fingertips",
     "text": "During my work-study placement at Exceenis, I had the opportunity to design software for a robotic arm used to test various electronic products. My role included creating a graphic charter and integrating 3D models into an interactive scene.",
     "services": [
@@ -20,15 +20,10 @@
       "Storybook pattern library"
     ],
     "year": "2023",
-    "large_img": "assets/mdt/large_img.png",
-    "website_img": "assets/mdt/img_01.png",
-    "website_img_2": "assets/mdt/img_02.png",
-    "small_img": "assets/mdt/small_img.png",
-    "website_url": "",
-    "video": "assets/mdt/video.mov"
+    "website_url": ""
   },
   {
-    "name": "madamePee",
+    "name": "madamepee",
     "Catchphrase": "Because every woman's needs count",
     "text": "During my work-study experience at Exceenis, I developed a website listing all female urinals in France. My job was to design and implement this platform, meeting the specific needs of the market with precision and reliability.",
     "services": [
@@ -39,12 +34,7 @@
     ],
     "features": ["API ", "React Js Frontend", "Context", "Responsive"],
     "year": "2021",
-    "large_img": "assets/madamepee/large_img.png",
-    "website_img": "assets/madamepee/img_01.png",
-    "website_img_2": "assets/madamepee/img_02.png",
-    "small_img": "assets/madamepee/small_img.png",
-    "website_url": "https://www.madamepee.com/en/home/",
-    "video": "assets/mdt/video.mov"
+    "website_url": "https://www.madamepee.com/en/home/"
   },
   {
     "name": "bolk",
@@ -59,12 +49,39 @@
     ],
     "features": ["Storybook pattern library ", "Vue Js Frontend", "Context", "Responsive"],
     "year": "2021",
-    "large_img": "assets/bolk/large_img.png",
-    "website_img": "assets/bolk/small_img.png",
-    "website_img_2": "assets/bolk/img_01.png",
-    "small_img": "assets/bolk/img_02.png",
-    "website_url": "https://bolk.co",
-    "video": "assets/bolk/video.mov"
+    "website_url": "https://bolk.co"
+  },
+  {
+    "name": "lostInChatelet",
+    "Catchphrase": "Explore Châtelet, the city's lively station! Ready for the challenge of finding your way out on one of our many lines?",
+    "text": "As part of a school project at HETIC, we are developing a game exclusively in JavaScript. The aim of this initiative is to deepen our understanding of the language and its various aspects.",
+    "services": [
+      "Development",
+      "Website optimisation",
+      "UI (user Interface) design",
+      "UX (user experience) design"
+    ],
+    "features": ["Only javascript", "Design of graphics and animations", "Creating difficulty levels"],
+    "year": "2018",
+    "website_url": "https://thirsty-murdock-50044a.netlify.app/"
+  },
+  {
+    "name": "histocom",
+    "Catchphrase": "Explore Châtelet, the city's lively station! Ready for the challenge of finding your way out on one of our many lines?",
+    "text": "As part of a school project at HETIC, we are developing a game exclusively in JavaScript. The aim of this initiative is to deepen our understanding of the language and its various aspects.",
+    "services": [
+      "Development",
+      "Website optimisation",
+      "UI (user Interface) design",
+      "UX (user experience) design"
+    ],
+    "features": [
+      "Only javascript",
+      "Design of graphics and animations",
+      "Creating difficulty levels"
+    ],
+    "year": "2018",
+    "website_url": "https://histocom.netlify.app/#/"
   }
   
 ]

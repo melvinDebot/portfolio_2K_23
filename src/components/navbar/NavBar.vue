@@ -1,10 +1,12 @@
 <script>
 import { RouterLink } from 'vue-router'
 import { TimelineLite } from 'gsap'
+
 export default {
   name: 'NavBar',
   data: () => ({
-    showText: true
+    showText: true,
+    animationPlayed: false  // Ajoutez un état pour vérifier si l'animation a été jouée
   }),
   methods: {
     getScreen() {
@@ -12,23 +14,32 @@ export default {
       if (screenWidth <= 500) {
         this.showText = false
       }
+    },
+    playAnimation() {
+      if (!this.animationPlayed) { // Vérifiez si l'animation n'a pas encore été jouée
+        const timeline = new TimelineLite()
+        timeline.from("nav h4", 1.8, {
+          y: 100,
+          ease: 'power4.out',
+          opacity: 0,
+          delay: 1,
+          skewY: 7,
+          stagger: {
+            amount: 0.2
+          }
+        })
+        this.animationPlayed = true // Mettez à jour l'état pour indiquer que l'animation a été jouée
+      }
     }
   },
   mounted() {
-    this.getScreen()
-    const timeline = new TimelineLite()
     setTimeout(() => {
-      timeline.from("nav h4", 1.8, {
-        y: 100,
-        ease: 'power4.out',
-        opacity:0,
-        delay: 1,
-        skewY: 7,
-        stagger: {
-          amount: 0.2
-        }
-      })
-    }, 8000)
+      this.getScreen()
+      this.playAnimation()
+    }, 8000);
+  },
+  components: {
+    RouterLink
   }
 }
 </script>
@@ -51,6 +62,7 @@ nav {
   justify-content: space-between;
   padding: 0 20px;
   align-items: center;
+  mix-blend-mode: difference;
   position: fixed;
   z-index: 999;
   top: 10px;
@@ -61,6 +73,7 @@ nav {
   }
   h4{
     opacity: 1;
+    mix-blend-mode: difference;
   }
   button {
     background: none;
