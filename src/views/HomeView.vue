@@ -18,7 +18,8 @@
         @click="animationTransitionPage(item.name)"
       >
         <h1>{{ item.name }}</h1>
-        <ImageComponent imagePath="large_img" :nameProject="item.name" />
+        
+        <img :src="imageMdt" />
       </div>
     </div>
     <div class="buttons">
