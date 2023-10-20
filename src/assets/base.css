@@ -4,21 +4,21 @@
   font-family: 'GalanoGrotesque-Medium'; /*Can be any text*/
   src:
     local('GalanoGrotesque-Medium'),
-    url('./assets/font/GalanoGrotesque-Medium.ttf') format('truetype');
+    url('./font/GalanoGrotesque-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'GalanoGrotesque-Regular'; /*Can be any text*/
   src:
     local('GalanoGrotesque-Regular'),
-    url('./assets/font/GalanoGrotesque-Regular.ttf') format('truetype');
+    url('./font/GalanoGrotesque-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'GalanoGrotesque-SemiBold'; /*Can be any text*/
   src:
     local('GalanoGrotesque-SemiBold'),
-    url('./assets/font/GalanoGrotesque-SemiBold.ttf') format('truetype');
+    url('./font/GalanoGrotesque-SemiBold.ttf') format('truetype');
 }
 
 :root {
