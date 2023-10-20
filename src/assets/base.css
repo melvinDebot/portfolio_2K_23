@@ -2,26 +2,29 @@
 
 @font-face {
   font-family: 'GalanoGrotesque-Medium'; /*Can be any text*/
-  src: local('GalanoGrotesque-Medium'),
+  src:
+    local('GalanoGrotesque-Medium'),
     url('./assets/font/GalanoGrotesque-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'GalanoGrotesque-Regular'; /*Can be any text*/
-  src: local('GalanoGrotesque-Regular'),
+  src:
+    local('GalanoGrotesque-Regular'),
     url('./assets/font/GalanoGrotesque-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'GalanoGrotesque-SemiBold'; /*Can be any text*/
-  src: local('GalanoGrotesque-SemiBold'),
+  src:
+    local('GalanoGrotesque-SemiBold'),
     url('./assets/font/GalanoGrotesque-SemiBold.ttf') format('truetype');
 }
 
 :root {
   --mobile-start: 10vh; /* Valeur pour les appareils mobiles (10% de la hauteur de l'écran) */
   --tablet-start: 15vh; /* Valeur pour les tablettes (15% de la hauteur de l'écran) */
-  --desktop-start: 20vh; 
+  --desktop-start: 20vh;
 
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
@@ -80,7 +83,6 @@
   margin: 0;
   padding: 0;
   font-weight: normal;
-  
 }
 html {
   cursor: none;
@@ -93,8 +95,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: opacity 0.3s ease;
-  
-  
 }
 
 h1 {
@@ -102,21 +102,21 @@ h1 {
   font-size: 4.8vw;
 }
 
-h2{
+h2 {
   font-size: 2.4vw;
   font-family: GalanoGrotesque-SemiBold;
 }
 
-h3{
+h3 {
   font-size: 1.6vw;
   font-family: GalanoGrotesque-Regular;
 }
-h4{
+h4 {
   font-size: 0.89;
   font-family: GalanoGrotesque-Regular;
 }
 
-p{
+p {
   font-size: 14px;
 }
 
@@ -126,7 +126,7 @@ p{
     font-size: 32px;
     line-height: auto;
   }
-  h3{
+  h3 {
     font-size: 20px;
     line-height: auto;
   }

@@ -1,8 +1,8 @@
 <template>
-  <div class="container" :style="{background : backgroundContainer}">
-    <div class="heandband" :style="{backgroundColor : backgroundHeadBand}">
-      <h1 ref="title" :style="{color : colorText}" v-if="!isContactPage">{{ number }} %</h1>
-      <h1 ref="heandband_text" :style="{color : colorText}" v-if="isContactPage">Contact</h1>
+  <div class="container" :style="{ background: backgroundContainer }">
+    <div class="heandband" :style="{ backgroundColor: backgroundHeadBand }">
+      <h1 ref="title" :style="{ color: colorText }" v-if="!isContactPage">{{ number }} %</h1>
+      <h1 ref="heandband_text" :style="{ color: colorText }" v-if="isContactPage">Contact</h1>
     </div>
   </div>
 </template>
@@ -20,26 +20,25 @@ export default {
     isContactPage: Boolean
   },
 
-  computed : {
+  computed: {
     getNumber() {
       return this.number
-    },
+    }
   },
 
   updated() {
     const timeline = new TimelineLite()
-    timeline.to(".heandband", 1, { height: "10vh", ease: "power2.out" })
+    timeline.to('.heandband', 1, { height: '10vh', ease: 'power2.out' })
     if (this.getNumber === 100) {
-      timeline.to(".heandband", 1, { height: "100vh", ease: "power2.out" }, 2)
+      timeline.to('.heandband', 1, { height: '100vh', ease: 'power2.out' }, 2)
     }
   },
   unmounted() {
     // Revoir la transistion de sortie
     const timeline = new TimelineLite()
-    timeline.to(".heandband", 1, { opacity: 0, ease: "power2.out", duration: 1 })
+    timeline.to('.heandband', 1, { opacity: 0, ease: 'power2.out', duration: 1 })
     console.log('unmounted')
   }
-  
 }
 </script>
 
@@ -65,7 +64,6 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      
     }
   }
 }

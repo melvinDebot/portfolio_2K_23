@@ -6,7 +6,7 @@ export default {
   name: 'NavBar',
   data: () => ({
     showText: true,
-    animationPlayed: false  // Ajoutez un état pour vérifier si l'animation a été jouée
+    animationPlayed: false // Ajoutez un état pour vérifier si l'animation a été jouée
   }),
   methods: {
     getScreen() {
@@ -16,9 +16,10 @@ export default {
       }
     },
     playAnimation() {
-      if (!this.animationPlayed) { // Vérifiez si l'animation n'a pas encore été jouée
+      if (!this.animationPlayed) {
+        // Vérifiez si l'animation n'a pas encore été jouée
         const timeline = new TimelineLite()
-        timeline.from("nav h4", 1.8, {
+        timeline.from('nav h4', 1.8, {
           y: 100,
           ease: 'power4.out',
           opacity: 0,
@@ -36,7 +37,7 @@ export default {
     setTimeout(() => {
       this.getScreen()
       this.playAnimation()
-    }, 8000);
+    }, 8000)
   },
   components: {
     RouterLink
@@ -47,11 +48,13 @@ export default {
 <template>
   <nav>
     <RouterLink to="/">
-        <h4 ref="text">Melvin Debot</h4>
+      <h4 ref="text">Melvin Debot</h4>
     </RouterLink>
 
     <h4 v-if="showText">Developer Front End / Porfolio 2023</h4>
-    <RouterLink to="/contact"><button><h4>Contact Me</h4></button></RouterLink>
+    <RouterLink to="/contact"
+      ><button><h4>Contact Me</h4></button></RouterLink
+    >
   </nav>
 </template>
 
@@ -71,7 +74,7 @@ nav {
     text-decoration: none;
     color: var(--color-text);
   }
-  h4{
+  h4 {
     opacity: 1;
     mix-blend-mode: difference;
   }

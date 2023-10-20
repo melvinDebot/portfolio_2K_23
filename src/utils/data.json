@@ -1,4 +1,3 @@
-
 [
   {
     "name": "mdt",
@@ -61,7 +60,11 @@
       "UI (user Interface) design",
       "UX (user experience) design"
     ],
-    "features": ["Only javascript", "Design of graphics and animations", "Creating difficulty levels"],
+    "features": [
+      "Only javascript",
+      "Design of graphics and animations",
+      "Creating difficulty levels"
+    ],
     "year": "2018",
     "website_url": "https://thirsty-murdock-50044a.netlify.app/"
   },
@@ -83,5 +86,4 @@
     "year": "2018",
     "website_url": "https://histocom.netlify.app/#/"
   }
-  
 ]

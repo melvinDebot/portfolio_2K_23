@@ -1,18 +1,17 @@
 <script setup>
-import { ref, onMounted, onBeforeMount } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-import NavBar from './components/navbar/NavBar.vue';
+import { onMounted} from 'vue'
+import {  RouterView } from 'vue-router'
+import NavBar from './components/navbar/NavBar.vue'
 
 onMounted(() => {
-  const cursor = document.querySelector('.custom-cursor');
+  const cursor = document.querySelector('.custom-cursor')
 
   document.addEventListener('mousemove', (e) => {
     // Mettez à jour la position du curseur en fonction des coordonnées de la souris
-    cursor.style.left = `${e.clientX}px`;
-    cursor.style.top = `${e.clientY}px`;
-  });
-});
-
+    cursor.style.left = `${e.clientX}px`
+    cursor.style.top = `${e.clientY}px`
+  })
+})
 </script>
 
 <template>
@@ -32,7 +31,6 @@ onMounted(() => {
 </template>
 
 <style scoped lang="css">
-
 /* Curseur personnalisé */
 .custom-cursor {
   position: fixed;
@@ -61,7 +59,4 @@ onMounted(() => {
     transform: scale(1);
   }
 }
-
 </style>
-
-

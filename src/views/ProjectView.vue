@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="wrapper">
-      <Image class="wrapper_img" imagePath="large_img" :nameProject="currentData[0].name" />
+      <ImageComponent class="wrapper_img" imagePath="large_img" :nameProject="currentData[0].name" />
 
       <h1>{{ currentData[0].name }}</h1>
     </div>
     <div class="layer">
       <div class="layer_img reveal">
-        <Image imagePath="img_01" :nameProject="currentData[0].name" />
+        <ImageComponent imagePath="img_01" :nameProject="currentData[0].name" />
       </div>
       <div class="layer_text">
         <h2 class="text_color_white">{{ currentData[0].Catchphrase }}</h2>
@@ -16,7 +16,7 @@
     </div>
     <div class="layer">
       <div class="layer_video">
-        <Video :imagePath="currentData[0].name" :nameProject="currentData[0].name" />
+        <VideoComponent :imagePath="currentData[0].name" :nameProject="currentData[0].name" />
       </div>
     </div>
     <div class="layer">
@@ -29,7 +29,7 @@
         </ul>
       </div>
       <div class="layer_img_small reveal">
-        <Image imagePath="small_img" :nameProject="currentData[0].name" />
+        <ImageComponent imagePath="small_img" :nameProject="currentData[0].name" />
       </div>
     </div>
     <div class="layer">
@@ -42,7 +42,7 @@
         </ul>
       </div>
       <div class="layer_img_small reveal">
-        <Image imagePath="img_02" :nameProject="currentData[0].name" />
+        <ImageComponent imagePath="img_02" :nameProject="currentData[0].name" />
       </div>
     </div>
     <div class="layer">
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="next_project">
-      <Image imagePath="large_img" :nameProject="getNameNextProject(currentData[0].name)" />
+      <ImageComponent imagePath="large_img" :nameProject="getNameNextProject(currentData[0].name)" />
       <h1>{{ getNameNextProject(currentData[0].name) }}</h1>
     </div>
   </div>
@@ -78,16 +78,16 @@ import data from '../utils/data.json'
 import LargeImg from '../assets/bolk/large_img.png'
 import { TimelineLite, gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import Image from '../components/image/Image.vue'
-import Video from '../components/video/Video.vue'
+import ImageComponent from '../components/image/ImageComponent.vue'
+import VideoComponent from '../components/video/VideoComponent.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
   name: 'ProjectView',
   components: {
-    Image,
-    Video
+    ImageComponent,
+    VideoComponent
   },
   data: () => ({
     image: LargeImg
@@ -162,8 +162,7 @@ export default {
         this.$router.push({ name: 'project', params: { name: data[0].name } })
       }
       window.scrollTo({
-        top: 0,
-
+        top: 0
       })
     }
   },
@@ -179,12 +178,12 @@ export default {
       return '100%'
     },
     getSizeScreen() {
-      if(window.innerWidth < 768) {
+      if (window.innerWidth < 768) {
         return 'top top'
       } else {
         return '1170 top'
       }
-    },
+    }
   },
   mounted() {
     this.scrollAnimation()

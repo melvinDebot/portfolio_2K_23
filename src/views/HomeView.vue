@@ -18,18 +18,27 @@
         @click="animationTransitionPage(item.name)"
       >
         <h1>{{ item.name }}</h1>
-        <Image imagePath="large_img" :nameProject="item.name" />
+        <ImageComponent imagePath="large_img" :nameProject="item.name" />
       </div>
     </div>
     <div class="buttons">
-      <button @click="nextSlide" class="next_button" :disabled="nextButtonDisabled" v-show="currentItemIndex < getData.length - 1">
+      <button
+        @click="nextSlide"
+        class="next_button"
+        :disabled="nextButtonDisabled"
+        v-show="currentItemIndex < getData.length - 1"
+      >
         <h4>Next</h4>
-        <IconArrow width="24" height="24"/>
+        <IconArrow width="24" height="24" />
       </button>
-      <button @click="prevSlide" class="prev_button" :disabled="prevButtonDisabled" v-show="currentItemIndex > 0">
-        <IconArrow width="24" height="24" class="rotate"/>
+      <button
+        @click="prevSlide"
+        class="prev_button"
+        :disabled="prevButtonDisabled"
+        v-show="currentItemIndex > 0"
+      >
+        <IconArrow width="24" height="24" class="rotate" />
         <h4>Prev</h4>
-        
       </button>
     </div>
   </main>
@@ -42,14 +51,14 @@ import { TimelineLite } from 'gsap'
 import LargeImgBolk from '../assets/bolk/large_img.png'
 import LargeImgMdt from '../assets/mdt/large_img.png'
 import LargeImgMadamePee from '../assets/madamepee/large_img.png'
-import Image from '../components/image/Image.vue'
+import ImageComponent from '../components/image/ImageComponent.vue'
 import IconArrow from '../components/icons/IconArrow.vue'
 
 export default {
   name: 'HomeView',
   components: {
     Headband,
-    Image,
+    ImageComponent,
     IconArrow
   },
   data: () => ({
@@ -220,20 +229,25 @@ export default {
     }
   },
   beforeMount() {
-    this.showAnimation = true;
+    this.showAnimation = true
   },
 
   mounted() {
     this.incrementTitle()
     const timeline = new TimelineLite()
     setTimeout(() => {
-      timeline.fromTo([".slider", ".buttons"], 5.8, {
-        opacity: 0,
-        ease: 'power4.out',
-      }, {
-        opacity: 1,
-        ease: 'power4.out',
-      })
+      timeline.fromTo(
+        ['.slider', '.buttons'],
+        5.8,
+        {
+          opacity: 0,
+          ease: 'power4.out'
+        },
+        {
+          opacity: 1,
+          ease: 'power4.out'
+        }
+      )
     }, 9000)
   }
 }
@@ -252,7 +266,7 @@ main {
   align-items: center;
   margin-top: 80px;
 
-  .rotate{
+  .rotate {
     transform: rotate(180deg);
   }
 
@@ -277,7 +291,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    h4{
+    h4 {
       margin: 0px 10px;
     }
   }

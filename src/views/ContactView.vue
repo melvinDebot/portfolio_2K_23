@@ -13,19 +13,19 @@
     <div class="contact_container">
       <div class="contact_container_form">
         <div class="form">
-          <input type="text" name="text" autocomplete="off" required v-model="name"/>
+          <input type="text" name="text" autocomplete="off" required v-model="name" />
           <label for="text" class="label-name">
             <span class="content-name"> Name </span>
           </label>
         </div>
         <div class="form">
-          <input type="mail" name="text" autocomplete="off" required v-model="mail"/>
+          <input type="mail" name="text" autocomplete="off" required v-model="mail" />
           <label for="text" class="label-name">
             <span class="content-name"> Email </span>
           </label>
         </div>
         <div class="form">
-          <input type="text" name="text" autocomplete="off" required v-model="text"/>
+          <input type="text" name="text" autocomplete="off" required v-model="text" />
           <label for="text" class="label-name">
             <span class="content-name"> Message </span>
           </label>
@@ -109,11 +109,7 @@ export default {
 
     timeline.to('.contact_container h2', { opacity: 1, ease: 'power2.out', duration: 1 }, 6)
 
-    timeline.to(
-      '.contact_title',
-      { position: 'absolute'},
-      5
-    )
+    timeline.to('.contact_title', { position: 'absolute' }, 5)
   }
 }
 </script>
