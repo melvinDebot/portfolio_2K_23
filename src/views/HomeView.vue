@@ -273,7 +273,7 @@ main {
 
   .buttons {
     position: fixed;
-    bottom: 3%;
+    bottom: 0%;
     transform: translate(0, -50%);
 
     width: 50vw;

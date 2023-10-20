@@ -97,8 +97,9 @@ export default {
       gsap.timeline({
         scrollTrigger: {
           trigger: '.next_project',
-          start: this.getSizeScreen,
-          markers: true,
+          start: 'center center',
+          end: 'bottom top',
+          // markers: true,
           scrub: true,
           pin: true,
           onEnter: () => {
@@ -203,7 +204,6 @@ export default {
   width: 100%;
   position: relative;
   transition: opacity 1s ease-in-out;
-  z-index: 99999999;
 
   h1 {
     opacity: 0;
@@ -279,7 +279,13 @@ export default {
       flex-direction: column;
       align-items: flex-start;
     }
-
+    ul{
+      margin-right: 30px;
+      @media (max-width: 768px) {
+      margin-left: 0px;
+      margin: 10px 0px;
+    }
+    }
     li {
       list-style: none;
       color: var(--color-text);
