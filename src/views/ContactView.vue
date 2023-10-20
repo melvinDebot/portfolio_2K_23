@@ -13,42 +13,65 @@
     <div class="contact_container">
       <div class="contact_container_form">
         <div class="form">
-          <input type="text" name="text" autocomplete="off" required />
+          <input type="text" name="text" autocomplete="off" required v-model="name"/>
           <label for="text" class="label-name">
             <span class="content-name"> Name </span>
           </label>
         </div>
         <div class="form">
-          <input type="text" name="text" autocomplete="off" required />
+          <input type="mail" name="text" autocomplete="off" required v-model="mail"/>
           <label for="text" class="label-name">
             <span class="content-name"> Email </span>
           </label>
         </div>
         <div class="form">
-          <input type="text" name="text" autocomplete="off" required />
+          <input type="text" name="text" autocomplete="off" required v-model="text"/>
           <label for="text" class="label-name">
             <span class="content-name"> Message </span>
           </label>
         </div>
-        <button>Send</button>
+        <button @click="sendEmail">
+          SEND
+          <IconArrow width="52" height="35" />
+        </button>
       </div>
       <h2>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi
+        I'm currently a young graduate with a master's degree in IT and I'm looking for a permanent
+        contract to acquire and develop various skills. I'm looking for new perspectives.
       </h2>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue'
 import { TimelineLite } from 'gsap'
 import Headband from '../components/transitions/Headband.vue'
+import IconArrow from '../components/icons/IconArrow.vue'
 
 export default {
   name: 'ContactView',
   components: {
-    Headband
+    Headband,
+    IconArrow
+  },
+  setup() {
+    const name = ref('')
+    const email = ref('')
+    const message = ref('')
+
+    const sendEmail = () => {
+      const mailtoLink = `mailto:${email.value}?subject=Regarding%20${name.value}&body=${message.value}`
+      window.location.href = mailtoLink
+    }
+
+    return {
+      // ... (autres valeurs à retourner, le cas échéant) ...
+      name,
+      email,
+      message,
+      sendEmail
+    }
   },
   data: () => ({
     number: 0,
@@ -63,7 +86,7 @@ export default {
           clearInterval(interval)
           setTimeout(() => {
             this.showAnimation = false
-          }, 4000)
+          }, 3000)
         }
       }, 50) // Adjust the interval time as needed
     }
@@ -78,8 +101,18 @@ export default {
     const timeline = new TimelineLite()
     timeline.to(
       '.contact_title',
-      { top: '145px', left: '159px', ease: 'power2.out', duration: 2 },
+      { top: '145px', left: '159px', fontSize: '70px', ease: 'power2.out', duration: 1 },
       4
+    )
+
+    timeline.to('.contact_container_form', { opacity: 1, ease: 'power2.out', duration: 1 }, 6)
+
+    timeline.to('.contact_container h2', { opacity: 1, ease: 'power2.out', duration: 1 }, 6)
+
+    timeline.to(
+      '.contact_title',
+      { position: 'absolute'},
+      5
     )
   }
 }
@@ -105,9 +138,10 @@ export default {
   }
 
   .contact_container_form {
-    width: 21.45vw;
+    width: 31.45vw;
     height: auto;
-    @media screen and (max-width: 700px) {
+    opacity: 0;
+    @media screen and (max-width: 800px) {
       width: 100%;
     }
   }
@@ -115,12 +149,14 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 800px) {
       flex-direction: column-reverse;
     }
     h2 {
       width: 60%;
-      @media screen and (max-width: 700px) {
+      color: black;
+      opacity: 0;
+      @media screen and (max-width: 800px) {
         width: 100%;
         margin-top: 7em;
       }
@@ -128,10 +164,8 @@ export default {
     button {
       background: none;
       border: none;
-      font-size: 2.4vw;
-      -webkit-text-stroke-width: 1px;
-      -webkit-text-stroke-color: black;
-      color: white;
+      font-size: 40px;
+      color: black;
       cursor: pointer;
       margin-top: 30px;
       font-family: GalanoGrotesque-SemiBold;

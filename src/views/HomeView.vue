@@ -24,9 +24,12 @@
     <div class="buttons">
       <button @click="nextSlide" class="next_button" :disabled="nextButtonDisabled" v-show="currentItemIndex < getData.length - 1">
         <h4>Next</h4>
+        <IconArrow width="24" height="24"/>
       </button>
       <button @click="prevSlide" class="prev_button" :disabled="prevButtonDisabled" v-show="currentItemIndex > 0">
+        <IconArrow width="24" height="24" class="rotate"/>
         <h4>Prev</h4>
+        
       </button>
     </div>
   </main>
@@ -40,12 +43,14 @@ import LargeImgBolk from '../assets/bolk/large_img.png'
 import LargeImgMdt from '../assets/mdt/large_img.png'
 import LargeImgMadamePee from '../assets/madamepee/large_img.png'
 import Image from '../components/image/Image.vue'
+import IconArrow from '../components/icons/IconArrow.vue'
 
 export default {
   name: 'HomeView',
   components: {
     Headband,
-    Image
+    Image,
+    IconArrow
   },
   data: () => ({
     showAnimation: false,
@@ -215,21 +220,21 @@ export default {
     }
   },
   beforeMount() {
-    // this.showAnimation = true;
+    this.showAnimation = true;
   },
 
   mounted() {
     this.incrementTitle()
-    // const timeline = new TimelineLite()
-    // setTimeout(() => {
-    //   timeline.fromTo([".slider", ".buttons"], 5.8, {
-    //     opacity: 0,
-    //     ease: 'power4.out',
-    //   }, {
-    //     opacity: 1,
-    //     ease: 'power4.out',
-    //   })
-    // }, 9000)
+    const timeline = new TimelineLite()
+    setTimeout(() => {
+      timeline.fromTo([".slider", ".buttons"], 5.8, {
+        opacity: 0,
+        ease: 'power4.out',
+      }, {
+        opacity: 1,
+        ease: 'power4.out',
+      })
+    }, 9000)
   }
 }
 </script>
@@ -246,6 +251,10 @@ main {
   justify-content: center;
   align-items: center;
   margin-top: 80px;
+
+  .rotate{
+    transform: rotate(180deg);
+  }
 
   .buttons {
     position: fixed;
@@ -265,6 +274,12 @@ main {
     border: none;
     color: var(--color-text);
     flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h4{
+      margin: 0px 10px;
+    }
   }
 
   .next_button {

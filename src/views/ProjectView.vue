@@ -54,7 +54,7 @@
     <div class="layer">
       <div>
         <h3 class="text_color_white">Website</h3>
-        <a href="" target="blank"
+        <a :href="currentData[0].website_url" target="_blank"
           ><h3 class="text_color_white">{{ currentData[0].name }}</h3></a
         >
       </div>
@@ -97,8 +97,8 @@ export default {
       gsap.timeline({
         scrollTrigger: {
           trigger: '.next_project',
-          start: 'top top',
-          // markers: true,
+          start: this.getSizeScreen,
+          markers: true,
           scrub: true,
           pin: true,
           onEnter: () => {
@@ -162,7 +162,8 @@ export default {
         this.$router.push({ name: 'project', params: { name: data[0].name } })
       }
       window.scrollTo({
-        top: 0
+        top: 0,
+
       })
     }
   },
@@ -176,7 +177,14 @@ export default {
     },
     sliderWidth() {
       return '100%'
-    }
+    },
+    getSizeScreen() {
+      if(window.innerWidth < 768) {
+        return 'top top'
+      } else {
+        return '1170 top'
+      }
+    },
   },
   mounted() {
     this.scrollAnimation()
@@ -196,7 +204,7 @@ export default {
   width: 100%;
   position: relative;
   transition: opacity 1s ease-in-out;
-  scroll-behavior: smooth;
+  z-index: 99999999;
 
   h1 {
     opacity: 0;
