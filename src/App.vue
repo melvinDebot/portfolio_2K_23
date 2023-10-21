@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeMount } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import NavBar from './components/navbar/NavBar.vue'
+import TransitionPage from "./components/transitions/TransitionPage.vue";
 
 onMounted(() => {
   const cursor = document.querySelector('.custom-cursor')
@@ -42,17 +43,10 @@ onMounted(() => {
   <div class="custom-cursor"></div>
   <div class="custom-cursor-circle"></div>
   <NavBar />
-  <!-- <header>
-    <div class="wrapper">
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
-
-  <RouterView />
+  <TransitionPage>
+    <RouterView />
+  </TransitionPage>
+  
 </template>
 
 <style scoped lang="css">

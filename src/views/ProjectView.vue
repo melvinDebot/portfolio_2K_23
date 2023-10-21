@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <TransitionPage>
+    <div class="container">
     <div class="wrapper">
       <ImageComponent class="wrapper_img" imagePath="large_img" :nameProject="currentData[0].name" />
 
@@ -71,6 +72,8 @@
       <h1>{{ getNameNextProject(currentData[0].name) }}</h1>
     </div>
   </div>
+  </TransitionPage>
+  
 </template>
 
 <script>
@@ -80,6 +83,7 @@ import { TimelineLite, gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import ImageComponent from '../components/image/ImageComponent.vue'
 import VideoComponent from '../components/video/VideoComponent.vue'
+import TransitionPage from '../components/transitions/TransitionPage.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -87,19 +91,28 @@ export default {
   name: 'ProjectView',
   components: {
     ImageComponent,
-    VideoComponent
+    VideoComponent,
+    TransitionPage
   },
   data: () => ({
     image: LargeImg
   }),
+  watch: {
+    '$route.params.name': function() {
+      // Déclencher l'animation à chaque fois que la valeur de $route.params.name change
+      const timeline = new TimelineLite()
+      timeline.fromTo('.wrapper h1', 1, { opacity: 0, y: 50, ease: 'power2.out' }, { opacity: 1, y: 0, ease: 'power2.out' })
+      console.log('route change')
+    }
+  },
   methods: {
     scrollAnimation() {
       gsap.timeline({
         scrollTrigger: {
-          trigger: '.next_project',
-          start: 'center center',
-          end: 'bottom top',
-          // markers: true,
+          trigger: '.container',
+          start: 'bottom-=400 center',
+          end: 'center center',
+          markers: true,
           scrub: true,
           pin: true,
           onEnter: () => {
@@ -107,6 +120,14 @@ export default {
           }
         }
       })
+    },
+    detectScreenWidth() {
+      if (window.innerWidth < 768) {
+        // Mobile
+        return 'center center'
+      } else {
+        return '1170 top'
+      }
     },
     getNameNextProject(currentName) {
       const currentIndex = data.findIndex((item) => item.name === currentName)
@@ -191,7 +212,7 @@ export default {
     this.revealImg()
     const timeline = new TimelineLite()
     timeline.to('.wrapper_img', 1, { height: '100vh', width: '100%', ease: 'power2.out' })
-    timeline.to('.wrapper h1', 1, { opacity: '1', ease: 'power2.out' })
+    timeline.fromTo('.wrapper h1', 1, { opacity: 0, y: 50, ease: 'power2.out' }, { opacity: 1, y: 0, ease: 'power2.out' })
   },
   unmounted() {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
