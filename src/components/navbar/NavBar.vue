@@ -37,7 +37,10 @@ export default {
     setTimeout(() => {
       this.getScreen()
       this.playAnimation()
-    }, 8000)
+    },
+      // 8000
+      1000
+    )
   },
   components: {
     RouterLink
