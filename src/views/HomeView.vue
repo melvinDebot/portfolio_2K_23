@@ -18,28 +18,28 @@
         @click="animationTransitionPage(item.name)"
       >
         <h1>{{ item.name }}</h1>
-        
+
         <ImageComponent imagePath="large_img" :nameProject="item.name" />
       </div>
     </div>
     <div class="buttons">
       <button
         @click="nextSlide"
-        class="next_button"
+        class="next_button hover_data"
         :disabled="nextButtonDisabled"
         v-show="currentItemIndex < getData.length - 1"
       >
-        <h4>Next</h4>
+        <h3>Next</h3>
         <IconArrow width="24" height="24" />
       </button>
       <button
         @click="prevSlide"
-        class="prev_button"
+        class="prev_button hover_data"
         :disabled="prevButtonDisabled"
         v-show="currentItemIndex > 0"
       >
         <IconArrow width="24" height="24" class="rotate" />
-        <h4>Prev</h4>
+        <h3>Prev</h3>
       </button>
     </div>
   </main>
@@ -48,7 +48,7 @@
 <script>
 import data from '../utils/data.json'
 import Headband from '../components/transitions/Headband.vue'
-import { TimelineLite } from 'gsap'
+import { TimelineLite, gsap } from 'gsap'
 import LargeImgBolk from '../assets/bolk/large_img.png'
 import LargeImgMdt from '../assets/mdt/large_img.png'
 import LargeImgMadamePee from '../assets/madamepee/large_img.png'
@@ -230,26 +230,42 @@ export default {
     }
   },
   beforeMount() {
-    this.showAnimation = true
+    // this.showAnimation = true
   },
 
   mounted() {
     this.incrementTitle()
     const timeline = new TimelineLite()
+    const sliders = document.querySelectorAll('.slide')
+    const sliderText = document.querySelectorAll('.slide h1')
+    const buttons = document.querySelectorAll('.buttons button')
     setTimeout(() => {
-      timeline.fromTo(
-        ['.slider', '.buttons'],
-        5.8,
-        {
-          opacity: 0,
-          ease: 'power4.out'
-        },
-        {
-          opacity: 1,
-          ease: 'power4.out'
-        }
+      timeline.staggerFromTo(
+        sliders,
+        1,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, ease: 'power4.out' },
+        0.5
       )
-    }, 9000)
+
+      timeline.add(() => {
+        gsap.fromTo(
+          sliderText,
+          2,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, ease: 'power4.out', stagger: 0.5 }
+        )
+      }, 1)
+
+      timeline.add(() => {
+        gsap.fromTo(
+          buttons,
+          2,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, ease: 'power4.out', stagger: 0.5 }
+        )
+      }, 1.5)
+    }, 2500)
   }
 }
 </script>
@@ -292,7 +308,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    h4 {
+    opacity: 0;
+    h3 {
       margin: 0px 10px;
     }
   }
@@ -302,18 +319,12 @@ main {
     bottom: 0;
     right: 0;
     cursor: pointer;
-    &:hover {
-      color: #54cc7c;
-    }
   }
   .prev_button {
     position: absolute;
     bottom: 0;
     left: 0;
     cursor: pointer;
-    &:hover {
-      color: #54cc7c;
-    }
   }
 
   .slider {
@@ -327,6 +338,7 @@ main {
   .slide {
     height: 100%;
     flex-shrink: 0;
+    opacity: 0;
     z-index: 1;
     width: 100%;
     overflow: hidden;
@@ -347,6 +359,7 @@ main {
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 2;
+      opacity: 0;
     }
   }
 }

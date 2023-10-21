@@ -37,7 +37,10 @@ export default {
     setTimeout(() => {
       this.getScreen()
       this.playAnimation()
-    }, 8000)
+    },
+      // 8000
+      1000
+    )
   },
   components: {
     RouterLink
@@ -48,12 +51,12 @@ export default {
 <template>
   <nav>
     <RouterLink to="/">
-      <h4 ref="text">Melvin Debot</h4>
+      <h4 ref="text" class="hover_data">Melvin Debot</h4>
     </RouterLink>
 
-    <h4 v-if="showText">Developer Front End / Porfolio 2023</h4>
+    <h4 v-if="showText" class="hover_data">Developer Front End / Porfolio 2023</h4>
     <RouterLink to="/contact"
-      ><button><h4>Contact Me</h4></button></RouterLink
+      ><button class="hover_data"><h4>Contact Me</h4></button></RouterLink
     >
   </nav>
 </template>

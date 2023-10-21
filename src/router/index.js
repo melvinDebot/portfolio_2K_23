@@ -9,17 +9,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
     },
     {
       path: '/project/:name',
       name: 'project',
-      component: ProjectView
+      component: ProjectView,
+      meta: { transitionName: 'fade' }
     },
     {
       path: '/contact',
       name: 'contact',
-      component: ContactView
+      component: ContactView,
     }
   ]
 })
