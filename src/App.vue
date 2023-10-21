@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted, onBeforeMount } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { onMounted } from 'vue'
+import { RouterView } from 'vue-router'
 import NavBar from './components/navbar/NavBar.vue'
 import TransitionPage from "./components/transitions/TransitionPage.vue";
 
