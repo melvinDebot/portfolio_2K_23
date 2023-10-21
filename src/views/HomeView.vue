@@ -25,7 +25,7 @@
     <div class="buttons">
       <button
         @click="nextSlide"
-        class="next_button"
+        class="next_button hover_data"
         :disabled="nextButtonDisabled"
         v-show="currentItemIndex < getData.length - 1"
       >
@@ -34,7 +34,7 @@
       </button>
       <button
         @click="prevSlide"
-        class="prev_button"
+        class="prev_button hover_data"
         :disabled="prevButtonDisabled"
         v-show="currentItemIndex > 0"
       >

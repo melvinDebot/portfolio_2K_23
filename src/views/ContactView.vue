@@ -99,17 +99,44 @@ export default {
   mounted() {
     this.incrementTitle()
     const timeline = new TimelineLite()
-    timeline.to(
-      '.contact_title',
-      { top: '145px', left: '159px', fontSize: '70px', ease: 'power2.out', duration: 1 },
-      4
+    const allInputs = document.querySelectorAll('.form')
+    console.log(window.innerWidth)
+
+    if (window.innerWidth >= 800) {
+      timeline.to(
+        '.contact_title',
+        { top: '12%', left: '159px', fontSize: '70px', ease: 'power2.out', duration: 1 },
+        4
+      )
+    } else {
+      timeline.to(
+        '.contact_title',
+        { top: '156px', left: '159px', fontSize: '70px', ease: 'power2.out', duration: 1, position: 'absolute' },
+        4
+      )
+    }
+
+    timeline.fromTo(
+      '.contact_container h2',
+      { opacity: 0, ease: 'power2.out', y: 50 },
+      { opacity: 1, ease: 'power2.out', y: 0 },
+      4.5
     )
 
-    timeline.to('.contact_container_form', { opacity: 1, ease: 'power2.out', duration: 1 }, 6)
+    timeline.staggerFromTo(
+      allInputs,
+      1,
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, ease: 'power4.out', stagger: 0.5 },
+      5
+    )
 
-    timeline.to('.contact_container h2', { opacity: 1, ease: 'power2.out', duration: 1 }, 6)
-
-    timeline.to('.contact_title', { position: 'absolute' }, 5)
+    timeline.fromTo(
+      '.contact-view button',
+      { opacity: 0, ease: 'power2.out', y: 50 },
+      { opacity: 1, ease: 'power2.out', y: 0 },
+      6.5
+    )
   }
 }
 </script>
@@ -136,7 +163,6 @@ export default {
   .contact_container_form {
     width: 31.45vw;
     height: auto;
-    opacity: 0;
     @media screen and (max-width: 800px) {
       width: 100%;
     }
@@ -151,7 +177,6 @@ export default {
     h2 {
       width: 60%;
       color: black;
-      opacity: 0;
       @media screen and (max-width: 800px) {
         width: 100%;
         margin-top: 7em;
